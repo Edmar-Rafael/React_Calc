@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Container } from '../../components'
-import { keys } from '../../utils'
+import { handleOperator, keys } from '../../utils'
 import { 
   DisplayContainer, 
   Keyboard, 
@@ -9,28 +9,38 @@ import {
   View
 } from './styles'
 
+export type keyType = {
+  id: number,
+  simbol: string
+}
+
 
 function Display() {
-  const [valors, setValors] = useState<number | string>('')
+  const [valor1, setValor1] = useState<string>('')
 
   function handleOperation(key: string) {
-    setValors(`${valors}` + key)
+    setValor1(valor1 + key)
+    if(key === 'C') {
+      setValor1('')
+    } else if(key === '<<') {
+      setValor1(valor1.slice(0, -1))
+    } 
   }
 
   return (
     <Container>
       <DisplayContainer>
         <ScreenContainer>
-          <View>{valors}</View>
+          <View>{handleOperator(valor1, '+', valor1)}</View>
+          <View>{valor1}</View>
         </ScreenContainer>
         <KeyboardContainer>
           <Keyboard>
-            <Button onClick={() => setValors('')} text={'C'}/>
           { keys.map((key, index) => 
             <Button 
               onClick={() => handleOperation(key)}
               key={index}
-              text={key}
+              item={key}
             />
           )}
           </Keyboard>

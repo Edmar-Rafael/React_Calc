@@ -1,19 +1,18 @@
-import React, { MouseEvent, ReactNode } from 'react'
+import React, { MouseEvent } from 'react'
+import { keyType } from '../../pages/Display';
 import { ButtonContainer, Text } from './styles'
 
 type ButtonType = {
-  children?: ReactNode;
-  text?: string | number;
+  item: string;
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void
 };
 
 
-function Button({children, text, onClick}: ButtonType) {
+function Button({item, onClick}: ButtonType) {
 
   return (
     <ButtonContainer onClick={onClick && onClick} type='button'>
-      {children}
-      <Text>{text}</Text>
+      <Text>{item}</Text>
     </ButtonContainer>
   )
 }

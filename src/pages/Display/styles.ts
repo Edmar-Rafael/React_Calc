@@ -17,6 +17,8 @@ export const ScreenContainer = styled.div`
 `
 
 export const View = styled.div`
+  display: flex;
+  flex-direction: column;
   color: white;
   font-size: 40px;
 `
